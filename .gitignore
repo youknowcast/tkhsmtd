@@ -1,0 +1,4 @@
+slides/*.html
+
+scripts/*
+!scripts/example.yml
