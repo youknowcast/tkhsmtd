@@ -1,39 +1,10 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/presenter'
-require 'fileutils'
-
-SCRIPTS_DIR = File.join(File.dirname(__FILE__), '../scripts')
-SLIDES_DIR = File.join(File.dirname(__FILE__), '../slides')
-
-# スライドディレクトリの作成
-FileUtils.mkdir_p(SLIDES_DIR)
-
-def process_yaml_files
-  yaml_files = Dir.glob(File.join(SCRIPTS_DIR, '*.yml'))
-
-  if yaml_files.empty?
-    puts 'エラー: scriptsディレクトリにYAMLファイルが見つかりません'
-    puts "YAMLファイルを #{SCRIPTS_DIR} に配置してください"
-    exit 1
-  end
-
-  yaml_files.each do |yaml_file|
-    basename = File.basename(yaml_file, '.yml')
-    output_file = File.join(SLIDES_DIR, "#{basename}.html")
-
-    presenter = Presenter.new(yaml_file)
-    File.write(output_file, presenter.generate_html)
-    puts "生成完了: #{output_file}"
-  rescue StandardError => e
-    puts "エラー (#{yaml_file}): #{e.message}"
-  end
-end
+require_relative '../lib/presentation_generator'
 
 begin
-  process_yaml_files
-  puts "\n全てのプレゼンテーションを生成しました"
-  puts 'slidesディレクトリ内のHTMLファイルをブラウザで開いてください'
+  generator = PresentationGenerator.new
+  generator.generate_all
 rescue StandardError => e
   puts "予期せぬエラーが発生しました: #{e.message}"
   exit 1

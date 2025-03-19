@@ -1,6 +1,7 @@
 require 'yaml'
 require 'erb'
 
+# YAMLファイルからHTMLスライドを生成するクラス
 class Presenter
   def initialize(yaml_file)
     @data = YAML.load_file(yaml_file)
