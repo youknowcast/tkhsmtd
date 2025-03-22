@@ -39,6 +39,19 @@ bin/present
 
 3. `slides` ディレクトリに生成されたHTMLファイルをブラウザで開きます
 
+### HTMLの生成
+
+```bash
+bin/present
+```
+
+### PDFの生成（オプション）
+
+```bash
+bundle install  # 初回のみ
+bin/generate_pdf
+```
+
 ## スライド操作
 
 - 次のスライド: 右矢印キー または スペースキー

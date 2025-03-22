@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/pdf_generator'
+
+begin
+  generator = PdfGenerator.new
+  generator.generate_all
+rescue StandardError => e
+  puts "予期せぬエラーが発生しました: #{e.message}"
+  exit 1
+end 

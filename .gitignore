@@ -2,3 +2,6 @@ slides/*.html
 
 scripts/*
 !scripts/example.yml
+
+# PDFファイルを除外
+pdf/*.pdf
